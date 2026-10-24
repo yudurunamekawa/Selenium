@@ -23,7 +23,6 @@ public class SampleTestCase {
 	private static WebDriver driver;
 	
 	@BeforeClass
-@BeforeClass
 	public static void setUpClass() throws IOException {
     	String path = SampleTestCase.class
         	.getClassLoader()
@@ -34,8 +33,6 @@ public class SampleTestCase {
     	driver = new FirefoxDriver();
 	}
 
-
-	
 	@AfterClass
 	public static void tearDownClass() throws IOException {
 		driver.quit();
