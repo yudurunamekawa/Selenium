@@ -23,15 +23,16 @@ public class SampleTestCase {
 	private static WebDriver driver;
 	
 	@BeforeClass
-	public static void setUpClass() throws IOException {
-    	String path = SampleTestCase.class
-        	.getClassLoader()
-        	.getResource("selenium.properties")
-        	.getPath();
+    public static void setUpClass() {
+        // FirefoxOptions を使ってヘッドレスモードを設定
+        FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(true); // ヘッドレスモードを有効化
 
-    	prop.load(new FileInputStream(path));
-    	driver = new FirefoxDriver();
-	}
+        // options を引数に渡してドライバを初期化
+        driver = new FirefoxDriver(options);
+        
+        // 既存のベースURL設定やウィンドウ最大化など
+    }
 
 	@AfterClass
 	public static void tearDownClass() throws IOException {
