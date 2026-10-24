@@ -23,10 +23,18 @@ public class SampleTestCase {
 	private static WebDriver driver;
 	
 	@BeforeClass
+@BeforeClass
 	public static void setUpClass() throws IOException {
-		prop.load(new FileInputStream("target\\test-classes\\selenium.properties"));
-		driver = new FirefoxDriver();
+    	String path = SampleTestCase.class
+        	.getClassLoader()
+        	.getResource("selenium.properties")
+        	.getPath();
+
+    	prop.load(new FileInputStream(path));
+    	driver = new FirefoxDriver();
 	}
+
+
 	
 	@AfterClass
 	public static void tearDownClass() throws IOException {
