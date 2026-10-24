@@ -27,7 +27,7 @@ public class SampleTestCase {
     public static void setUpClass() {
         // FirefoxOptions を使ってヘッドレスモードを設定
         FirefoxOptions options = new FirefoxOptions();
-        options.setHeadless(true); // ヘッドレスモードを有効化
+        options.addArguments("-headless");
 
         // options を引数に渡してドライバを初期化
         driver = new FirefoxDriver(options);
