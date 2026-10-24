@@ -18,22 +18,30 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxOptions; 
 
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
 public class SampleTestCase {
 
 	private static Properties prop = new Properties();
 	private static WebDriver driver;
 	
 	@BeforeClass
-    public static void setUpClass() {
-        // FirefoxOptions を使ってヘッドレスモードを設定
-        FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("-headless");
+    public static void setUpClass() throws IOException {
+   	 	String path = SampleTestCase.class
+    	    .getClassLoader()
+        	.getResource("selenium.properties")
+        	.getPath();
 
-        // options を引数に渡してドライバを初期化
-        driver = new FirefoxDriver(options);
-        
-        // 既存のベースURL設定やウィンドウ最大化など
-    }
+    	prop.load(new FileInputStream(path));
+
+    	ChromeOptions options = new ChromeOptions();
+    	options.addArguments("--headless");  // Jenkins では必須
+    	options.addArguments("--no-sandbox");
+    	options.addArguments("--disable-dev-shm-usage");
+
+    	driver = new ChromeDriver(options);
+	}
 
 	@AfterClass
 	public static void tearDownClass() throws IOException {
